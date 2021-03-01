@@ -53,3 +53,46 @@ How to help protect against a man-in-the-middle attack:
 - Never connect to public Wi-Fi routers directly, if possible. A VPN encrypts your internet connection on public hotspots to protect the private data you send and receive while using public Wi-Fi, like passwords or credit card information.
 - Since MITB attacks primarily use malware for execution, you should install a comprehensive internet security solution on your computer. Always keep the security software up to date.
 - Be sure that your home Wi-Fi network is secure. Update all of the default usernames and passwords on your home router and all connected devices to strong, unique passwords. 
+
+## OWASP Top 10:
+
+- Injection:
+
+A code injection happens when an attacker sends invalid data to the web application with the intention to make it do something that the application was not designed/programmed to do. Perhaps the most common example around this security vulnerability is the SQL query consuming untrusted data. Anything that accepts parameters as input can potentially be vulnerable to a code injection attack.
+
+Preventing SQL injections requires keeping data separate from commands and queries:
+  - The preferred option is to use a safe API, which avoids the use of the interpreter entirely or provides a parameterized interface or migrate to use Object    Relational Mapping Tools (ORMs). Note: Even when parameterized, stored procedures can still introduce SQL injection if PL/SQL or T-SQL concatenates queries and data, or executes hostile data with EXECUTE IMMEDIATE or exec().
+  - Use positive or “allowlist” server-side input validation. This is not a complete defense as many applications require special characters, such as text areas or APIs for mobile applications.
+  - For any residual dynamic queries, escape special characters using the specific escape syntax for that interpreter. Note: SQL structure such as table names, column names, and so on cannot be escaped, and thus user-supplied structure names are dangerous. This is a common issue in report-writing software.
+  - Use LIMIT and other SQL controls within queries to prevent mass disclosure of records in case of SQL injection.
+
+From these recommendations you can abstract two things:
+  - Separation of data from the web application logic.
+  - Implement settings and/or restrictions to limit data exposure in case of successful injection attacks.
+
+- Broken Authentication:
+
+A broken authentication vulnerability can allow an attacker to use manual and/or automatic methods to try to gain control over any account they want in a system – or even worse – to gain complete control over the system. Broken authentication usually refers to logic issues that occur on the application authentication’s mechanism, like bad session management prone to username enumeration. To minimize broken authentication risks avoid leaving the login page for admins publicly accessible to all visitors of the website.
+
+ A web application contains a broken authentication vulnerability if it:
+   - Permits automated attacks such as credential stuffing, where the attacker has a list of valid usernames and passwords.
+   - Permits brute force or other automated attacks.
+   - Permits default, weak, or well-known passwords
+   - Uses weak or ineffective credential recovery and forgot-password processes, such as “knowledge-based answers,” which cannot be made safe.
+   - Uses plain text, encrypted, or weakly hashed passwords.
+   - Has missing or ineffective multi-factor authentication.
+   - Exposes session IDs in the URL
+   - Does not rotate session IDs after successful login.
+   - Does not properly invalidate session IDs. User sessions or authentication tokens (particularly single sign-on (SSO) tokens) aren’t properly invalidated during logout or a period of inactivity.
+
+Preventing:
+    - Where possible, implement multi-factor authentication to prevent automated, credential stuffing, brute force, and stolen credential reuse attacks.
+    - Do not ship or deploy with any default credentials, particularly for admin users.
+    - Implement weak-password checks, such as testing new or changed passwords against a list of the top 10,000 worst passwords.
+    - Align password length, complexity and rotation policies with NIST 800-63 B’s guidelines in section 5.1.1 for Memorized Secrets or other modern, evidence-based password policies.
+    - Ensure registration, credential recovery, and API pathways are hardened against account enumeration attacks by using the same messages for all outcomes.
+    - Limit or increasingly delay failed login attempts. Log all failures and alert administrators when credential stuffing, brute force, or other attacks are detected.
+    - Use a server-side, secure, built-in session manager that generates a new random session ID with high entropy after login. Session IDs should not be in the URL. Ids should also be securely stored and invalidated after logout, idle, and absolute timeouts.
+
+
+
