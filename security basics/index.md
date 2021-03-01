@@ -86,13 +86,47 @@ A broken authentication vulnerability can allow an attacker to use manual and/or
    - Does not properly invalidate session IDs. User sessions or authentication tokens (particularly single sign-on (SSO) tokens) aren’t properly invalidated during logout or a period of inactivity.
 
 Preventing:
-    - Where possible, implement multi-factor authentication to prevent automated, credential stuffing, brute force, and stolen credential reuse attacks.
-    - Do not ship or deploy with any default credentials, particularly for admin users.
-    - Implement weak-password checks, such as testing new or changed passwords against a list of the top 10,000 worst passwords.
-    - Align password length, complexity and rotation policies with NIST 800-63 B’s guidelines in section 5.1.1 for Memorized Secrets or other modern, evidence-based password policies.
-    - Ensure registration, credential recovery, and API pathways are hardened against account enumeration attacks by using the same messages for all outcomes.
-    - Limit or increasingly delay failed login attempts. Log all failures and alert administrators when credential stuffing, brute force, or other attacks are detected.
-    - Use a server-side, secure, built-in session manager that generates a new random session ID with high entropy after login. Session IDs should not be in the URL. Ids should also be securely stored and invalidated after logout, idle, and absolute timeouts.
+   - Where possible, implement multi-factor authentication to prevent automated, credential stuffing, brute force, and stolen credential reuse attacks.
+   - Do not ship or deploy with any default credentials, particularly for admin users.
+   - Implement weak-password checks, such as testing new or changed passwords against a list of the top 10,000 worst passwords.
+   - Align password length, complexity and rotation policies with NIST 800-63 B’s guidelines in section 5.1.1 for Memorized Secrets or other modern, evidence-based password policies.
+   - Ensure registration, credential recovery, and API pathways are hardened against account enumeration attacks by using the same messages for all outcomes.
+   - Limit or increasingly delay failed login attempts. Log all failures and alert administrators when credential stuffing, brute force, or other attacks are detected.
+   - Use a server-side, secure, built-in session manager that generates a new random session ID with high entropy after login. Session IDs should not be in the URL. Ids should also be securely stored and invalidated after logout, idle, and absolute timeouts.
+
+Sensitive Data Exposure:
+
+Sensitive data exposure is one of the most widespread vulnerabilities on the OWASP list. It consists of compromising data that should have been protected.
+
+Some sensitive data that requires protection is:
+  - Credentials
+  - Credit card numbers
+  - Social Security Numbers
+  - Medical information
+  - Personally identifiable information (PII)
+  - Other personal information
+
+Responsible sensitive data collection and handling have become more noticeable especially after the advent of the General Data Protection Regulation (GDPR). This is a new data privacy law that came into effect May 2018. It mandates how companies collect, modify, process, store, and delete personal data originating in the European Union for both residents and visitors.
+
+There are two types of data:
+   - Stored data – data at rest
+   - Transmitted data – data that is transmitted internally between servers, or to web browsers
+
+Some of the ways to prevent data exposure:
+   - Classify data processed, stored, or transmitted by an application.
+   - Identify which data is sensitive according to privacy laws, regulatory requirements, or business needs.
+   - Apply controls as per the classification.
+   - Don’t store sensitive data unnecessarily.
+   - Discard it as soon as possible or use PCI DSS compliant tokenization or even truncation. Data that is not retained cannot be stolen.
+   - Make sure to encrypt all sensitive data at rest.
+   - Ensure up-to-date and strong standard algorithms, protocols, and keys are in place; use proper key management.
+   - Encrypt all data in transit with secure protocols such as TLS with perfect forward secrecy (PFS) ciphers, cipher prioritization by the server, and secure parameters.
+   - Enforce encryption using directives like HTTP Strict Transport Security
+   - Disable caching for responses that contain sensitive data.
+   - Store passwords using strong adaptive and salted hashing functions with a work factor (delay factor), such as Argon2, scrypt, bcrypt, or PBKDF2.
+   - Verify independently the effectiveness of configuration and settings.
+
+XML External Entities (XXE):
 
 
 
