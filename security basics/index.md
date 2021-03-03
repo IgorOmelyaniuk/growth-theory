@@ -94,7 +94,7 @@ Content Security Policy (CSP, политика защиты контента) �
 
 ## OWASP Top 10:
 
-Injection:
+### Injection:
 
 A code injection happens when an attacker sends invalid data to the web application with the intention to make it do something that the application was not designed/programmed to do. Perhaps the most common example around this security vulnerability is the SQL query consuming untrusted data. Anything that accepts parameters as input can potentially be vulnerable to a code injection attack.
 
@@ -108,7 +108,7 @@ From these recommendations you can abstract two things:
   - Separation of data from the web application logic.
   - Implement settings and/or restrictions to limit data exposure in case of successful injection attacks.
 
-Broken Authentication:
+### Broken Authentication:
 
 A broken authentication vulnerability can allow an attacker to use manual and/or automatic methods to try to gain control over any account they want in a system – or even worse – to gain complete control over the system. Broken authentication usually refers to logic issues that occur on the application authentication’s mechanism, like bad session management prone to username enumeration. To minimize broken authentication risks avoid leaving the login page for admins publicly accessible to all visitors of the website.
 
@@ -132,7 +132,7 @@ Preventing:
    - Limit or increasingly delay failed login attempts. Log all failures and alert administrators when credential stuffing, brute force, or other attacks are detected.
    - Use a server-side, secure, built-in session manager that generates a new random session ID with high entropy after login. Session IDs should not be in the URL. Ids should also be securely stored and invalidated after logout, idle, and absolute timeouts.
 
-Sensitive Data Exposure:
+### Sensitive Data Exposure:
 
 Sensitive data exposure is one of the most widespread vulnerabilities on the OWASP list. It consists of compromising data that should have been protected.
 
@@ -164,7 +164,103 @@ Some of the ways to prevent data exposure:
    - Store passwords using strong adaptive and salted hashing functions with a work factor (delay factor), such as Argon2, scrypt, bcrypt, or PBKDF2.
    - Verify independently the effectiveness of configuration and settings.
 
-XML External Entities (XXE):
+### XML External Entities (XXE):
 
+XML External Entity attack is a type of attack against an application that parses XML input. This attack occurs when XML input containing a reference to an external entity is processed by a weakly configured XML parser.
 
+Preventing:
+- Whenever possible, use less complex data formats ,such as JSON, and avoid serialization of sensitive data.
+- Patch or upgrade all XML processors and libraries in use by the application or on the underlying operating system.
+- Use dependency checkers
+- Implement positive server-side input validation, filtering, or sanitization to prevent hostile data within XML documents, headers, or nodes.
 
+### Broken Access Control:
+
+In website security, access control means putting a limit on what sections or pages visitors can reach, depending on their needs.
+For example, if you own an ecommerce store, you probably need access to the admin panel in order to add new products or to set up a promotion for the upcoming holidays. However, hardly anybody else would need it. Allowing the rest of your website’s visitors to reach your login page only opens up your ecommerce store to attacks. And that’s the problem with almost all major content management systems (CMS) these days. By default, they give worldwide access to the admin login page. Most of them also won’t force you to establish a two-factor authentication method (2FA).
+
+Examples of Broken Access Control:
+- Access to a hosting control / administrative panel
+- Access to a server via FTP / SFTP / SSH
+- Access to a website’s administrative panel
+- Access to other applications on your server
+- Access to a database
+
+Reducing the Risks of Broken Access Control:
+- Employ least privileged concepts – apply a role appropriate to the task and only for the amount of time necessary to complete said task and no more.
+- Get rid of accounts you don’t need or whose user no longer requires it.
+- Audit your servers and websites – who is doing what, when, and why.
+- If possible, apply multi-factor authentication to all your access points.
+- Disable access points until they are needed in order to reduce your access windows.
+- Remove unnecessary services off your server.
+- Check applications that are externally accessible versus applications that are tied to your network.
+
+To prevent broken access control:
+- With the exception of public resources, deny by default.
+- Implement access control mechanisms once and reuse them throughout the application, including minimizing CORS usage.
+- Log access control failures, alert admins when appropriate
+- Rate limit API and controller access to minimize the harm from automated attack tooling.
+- JWT tokens should be invalidated on the server after logout.
+
+### Security Misconfigurations:
+
+The most common:
+- Unpatched flaws
+- Default configurations
+- Unused pages
+- Unprotected files and directories
+- Unnecessary services
+
+In order to prevent security misconfigurations:
+- A repeatable hardening process that makes it fast and easy to deploy another environment that is properly locked down. Development, QA, and production environments should all be configured identically, with different credentials used in each environment. Automate this process in order to minimize the effort required to set up a new secure environment.
+- A minimal platform without any unnecessary features, components, documentation, and samples. Remove or do not install unused features and frameworks.
+- A task to review and update the configurations appropriate to all security notes, updates, and patches as part of the patch management process. In particular, review cloud storage permissions.
+- A segmented application architecture that provides effective and secure separation between components or tenants, with segmentation, containerization, or cloud security groups.
+- Sending security directives to clients, e.g. Security Headers.
+
+### Cross-Site Scripting (XSS):
+
+XSS is a widespread vulnerability that affects many web applications. XSS attacks consist of injecting malicious client-side scripts into a website and using the website as a propagation method. The risks behind XSS is that it allows an attacker to inject content into a website and modify how it is displayed, forcing a victim’s browser to execute the code provided by the attacker while loading the page.
+
+Types of XSS:
+- Reflected XSS: The application or API includes unvalidated and unescaped user input as part of HTML output. A successful attack can allow the attacker to execute arbitrary HTML and JavaScript in the victim’s browser. Typically the user will need to interact with some malicious link that points to an attacker-controlled page, such as malicious watering hole websites, advertisements, or similar.
+- Stored XSS: The application or API stores unsanitized user input that is viewed at a later time by another user or an administrator. Stored XSS is often considered high or critical risk.
+- DOM XSS: JavaScript frameworks, single-page applications, and APIs that dynamically include attacker-controllable data to a page are vulnerable to DOM XSS. Ideally, the application would not send attacker-controllable data to unsafe JavaScript APIs. Typical XSS attacks include session stealing, account takeover, MFA bypass, DOM-node replacement or defacement
+
+Preventing:
+- Using frameworks that automatically escape XSS by design, such as the latest Ruby on Rails, React JS. Learn the limitations of each framework’s XSS protection and appropriately handle the use cases which are not covered.
+- Escaping untrusted HTTP request data based on the context in the HTML output (body, attribute, JavaScript, CSS, or URL) will resolve Reflected and Stored XSS vulnerabilities. 
+- Applying context-sensitive encoding when modifying the browser document on the client side acts against DOM XSS
+- Enabling a content security policy (CSP) is a defense-in-depth mitigating control against XSS
+
+### Insecure Deserialization:
+
+If an attacker is able to deserialize an object successfully, then modify the object to give himself an admin role, serialize it again. This set of actions could compromise the whole web application.
+
+The best way to protect your web application from this type of risk is not to accept serialized objects from untrusted sources.
+
+Preventing:
+- Implementing integrity checks such as digital signatures on any serialized objects to prevent hostile object creation or data tampering.
+- Isolating and running code that deserializes in low privilege environments when possible.
+- Logging deserialization exceptions and failures, such as where the incoming type is not the expected type, or the deserialization throws exceptions.
+- Restricting or monitoring incoming and outgoing network connectivity from containers or servers that deserialize.
+- Monitoring deserialization, alerting if a user deserializes constantly.
+
+### Using Components with Known Vulnerabilities:
+
+Every time you disregard an update warning, you might be allowing a now known vulnerability to survive in your system. Whatever the reason for running out-of-date software on your web application, you can’t leave it unprotected.
+
+- Webmasters/developers cannot keep up with the pace of the updates; after all, updating properly takes time.
+- Legacy code won’t work on newer versions of its dependencies.
+- Webmasters are scared that something will break on their website.
+- Webmasters don’t have the expertise to properly apply the update.
+
+Preventing:
+- Remove all unnecessary dependencies.
+- Have an inventory of all your components on the client-side and server-side
+- Obtain components only from official sources.
+- Get rid of components not actively maintained.
+
+### Insufficient Logging and Monitoring:
+
+Not having an efficient logging and monitoring process in place can increase the damage of a website compromise. Keeping audit logs are vital to staying on top of any suspicious change to your website. An audit log is a document that records the events in a website so you can spot anomalies and confirm with the person in charge that the account hasn’t been compromised.
