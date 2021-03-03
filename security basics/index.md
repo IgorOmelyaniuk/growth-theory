@@ -54,9 +54,47 @@ How to help protect against a man-in-the-middle attack:
 - Since MITB attacks primarily use malware for execution, you should install a comprehensive internet security solution on your computer. Always keep the security software up to date.
 - Be sure that your home Wi-Fi network is secure. Update all of the default usernames and passwords on your home router and all connected devices to strong, unique passwords. 
 
+## CORS:
+
+The Cross-Origin Resource Sharing standard works by adding new HTTP headers that let servers describe which origins are permitted to read that information from a web browser. Additionally, for HTTP request methods that can cause side-effects on server data, the specification mandates that browsers "preflight" the request, soliciting supported methods from the server with the HTTP OPTIONS request method, and then, upon "approval" from the server, sending the actual request. Servers can also inform clients whether "credentials" (such as Cookies and HTTP Authentication) should be sent with requests.
+CORS failures result in errors, but for security reasons, specifics about the error are not available to JavaScript. All the code knows is that an error occurred. The only way to determine what specifically went wrong is to look at the browser's console for details.
+
+Some requests don’t trigger a CORS preflight. Those are called “simple requests”. 
+
+Simple requests:
+
+- One of the allowed methods: GET, POST, HEAD
+- The only allowed values for the Content-Type header are: application/x-www-form-urlencoded, multipart/form-data, text/plain
+- the only headers which are allowed to be manually set are those which the Fetch spec defines as a “CORS-safelisted request-header”, which are: Accept, Accept-Language, Content-Language, Content-Type
+- No ReadableStream object is used in the request.
+- No event listeners are registered on any XMLHttpRequest.upload object used in the request; these are accessed using the XMLHttpRequest.upload property.
+
+The pattern of the Origin and Access-Control-Allow-Origin headers is the simplest use of the access control protocol.
+
+Preflighted requests:
+
+Unlike “simple requests” (discussed above), for "preflighted" requests the browser first sends an HTTP request using the OPTIONS method to the resource on the other origin, in order to determine if the actual request is safe to send. Cross-site requests are preflighted like this since they may have implications to user data.
+
+The HTTP response headers:
+- Access-Control-Allow-Origin: <origin> | *
+- Access-Control-Expose-Headers
+- Access-Control-Max-Age: <delta-seconds> - indicates how long the results of a preflight request can be cached. For an example of a preflight request
+- Access-Control-Allow-Credentials: true -  indicates whether or not the response to the request can be exposed when the credentials flag is true
+- Access-Control-Allow-Methods: <method>[, <method>]*
+- Access-Control-Allow-Headers - indicate which HTTP headers can be used when making the actual request
+
+The HTTP request headers:
+- Origin: <origin> - indicates the origin of the cross-site access request or preflight request
+- Access-Control-Request-Method: <method> - used when issuing a preflight request to let the server know what HTTP method will be used when the actual request is made.
+- Access-Control-Request-Headers - used when issuing a preflight request to let the server know what HTTP headers will be used when the actual request is made
+
+## CSP:
+
+Content Security Policy (CSP, политика защиты контента) — это механизм обеспечения безопасности, с помощью которого можно защищаться от атак с внедрением контента, например, межсайтового скриптинга (XSS). CSP описывает безопасные источники загрузки ресурсов, устанавливает правила использования встроенных стилей, скриптов, а также динамической оценки JavaScript — например, с помощью eval. Загрузка с ресурсов, не входящих в «белый список», блокируется. Для использования политики страница должна содержать HTTP-заголовок Content-Security-Policy с одной и более директивами, которые представляют собой «белые списки». Простейший пример политики, разрешающей загрузку ресурсов только указанного домена: Content-Security-Policy: default-src 'self'. На данный момент в перечне URL нельзя прописывать пути, можно лишь перечислять сами домены и поддомены: Content-Security-Policy: default-src 'self' trusted.com *.trusted.com
+
 ## OWASP Top 10:
 
-- Injection:
+Injection:
 
 A code injection happens when an attacker sends invalid data to the web application with the intention to make it do something that the application was not designed/programmed to do. Perhaps the most common example around this security vulnerability is the SQL query consuming untrusted data. Anything that accepts parameters as input can potentially be vulnerable to a code injection attack.
 
@@ -70,7 +108,7 @@ From these recommendations you can abstract two things:
   - Separation of data from the web application logic.
   - Implement settings and/or restrictions to limit data exposure in case of successful injection attacks.
 
-- Broken Authentication:
+Broken Authentication:
 
 A broken authentication vulnerability can allow an attacker to use manual and/or automatic methods to try to gain control over any account they want in a system – or even worse – to gain complete control over the system. Broken authentication usually refers to logic issues that occur on the application authentication’s mechanism, like bad session management prone to username enumeration. To minimize broken authentication risks avoid leaving the login page for admins publicly accessible to all visitors of the website.
 
