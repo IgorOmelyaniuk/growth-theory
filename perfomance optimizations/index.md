@@ -71,6 +71,67 @@ self.addEventListener('fetch', function(event) {
     );
 });
 
-## Worklets:
+## Worklets
 
 Ворклеты — это хуки внутри rendering pipeline браузера, позволяющий нам иметь низкоуровневый доступ к процессу рендеринга браузера, таким как вычисление стилей и расчет макета.
+
+## RAIL Model
+
+RAIL is a user-centric performance model that provides a structure for thinking about performance. The model breaks down the user's experience into key actions and helps еto define performance goals for each of them. RAIL stands for four distinct aspects of web app life cycle: response, animation, idle, and load.
+
+Response: process events in under 50ms
+
+Goal:
+- Complete a transition initiated by user input within 100 ms, so users feel like the interactions are instantaneous.
+
+Guidelines:
+- To ensure a visible response within 100 ms, process user input events within 50 ms. This applies to most inputs, such as clicking buttons, toggling form controls, or starting animations. This does not apply to touch drags or scrolls.
+- Though it may sound counterintuitive, it's not always the right call to respond to user input immediately. You can use this 100 ms window to do other expensive work, but be careful not to block the user. If possible, do work in the background.
+- For actions that take longer than 50 ms to complete, always provide feedback.
+
+Animation: produce a frame in 10 ms
+
+Goals:
+- Produce each frame in an animation in 10 ms or less. Technically, the maximum budget for each frame is 16 ms (1000 ms / 60 frames per second ≈ 16 ms), but browsers need about 6 ms to render each frame, hence the guideline of 10 ms per frame.
+- Aim for visual smoothness. Users notice when frame rates vary.
+
+Guidelines:
+- In high pressure points like animations, the key is to do nothing where you can, and the absolute minimum where you can't. Whenever possible, make use of the 100 ms response to pre-calculate expensive work so that you maximize your chances of hitting 60 fps.
+
+Idle: maximize idle time
+
+Goal:
+- Maximize idle time to increase the odds that the page responds to user input within 50 ms.
+
+Guidelines:
+- Use idle time to complete deferred work. For example, for the initial page load, load as little data as possible, then use idle time to load the rest.
+- Perform work during idle time in 50 ms or less. Any longer, and you risk interfering with the app's ability to respond to user input within 50 ms.
+- If a user interacts with a page during idle time work, the user interaction should always take the highest priority and interrupt the idle time work.
+
+Load: deliver content and become interactive in under 5 seconds
+
+Goals:
+- Optimize for fast loading performance relative to the device and network capabilities of your users. Currently, a good target for first loads is to load the page and be interactive in 5 seconds or less on mid-range mobile devices with slow 3G connections
+- For next loads, a good target is to load the page in under 2 seconds.
+
+Guidelines:
+- Eliminate render blocking resources (for example  Coverage tab in Chrome DevTools)
+- You don't have to load everything in under 5 seconds to produce the perception of a complete load. Consider lazy-loading images, code-splitting JavaScript bundles, and other optimizations
+- Keep in mind that although your typical mobile user's device might claim that it's on a 2G, 3G, or 4G connection, in reality the effective connection speed is often significantly slower, due to packet loss and network variance.
+
+Tools for measuring RAIL:
+- Chrome DevTools 
+- Lighthouse
+- WebPageTest
+
+## PRPL
+
+PRPL is a pattern for structuring and serving web applications and Progressive Web Apps (PWAs) with an emphasis on improved app delivery and launch performance. The letters describe a set of ordered steps for fast, reliable, efficient loading:
+- Push all resources required for the initial route – and only those resources – to ensure that they are available as early as possible
+- Render the initial route and make it interactive before loading any additional resources
+- Pre-cache resources for additional routes that the user is likely to visit, maximizing responsiveness to subsequent requests and resilience under poor network conditions
+- Lazy-load routes on demand as the user requests them; resources for key routes should load instantly from the cache, whereas less commonly used resources can be fetched from the network upon request
+
+
+
+
