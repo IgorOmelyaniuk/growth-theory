@@ -128,10 +128,13 @@ Tools for measuring RAIL:
 
 PRPL is a pattern for structuring and serving web applications and Progressive Web Apps (PWAs) with an emphasis on improved app delivery and launch performance. The letters describe a set of ordered steps for fast, reliable, efficient loading:
 - Push (preload) all resources required for the initial route – and only those resources – to ensure that they are available as early as possible
-- Render the initial route and make it interactive before loading any additional resources
-- Pre-cache resources for additional routes that the user is likely to visit, maximizing responsiveness to subsequent requests and resilience under poor network conditions
+- Render the initial route and make it interactive before loading any additional resources (inline crytical JS and CSS, make other scripts as async, load other styles later or mark them for some cases)
+- Pre-cache resources for additional routes that the user is likely to visit, maximizing responsiveness to subsequent requests and resilience under poor network conditions (Service workers)
 - Lazy-load routes on demand as the user requests them; resources for key routes should load instantly from the cache, whereas less commonly used resources can be fetched from the network upon request
 
-
-
-
+## JS Loading Optimization:
+- Only sending the code a user needs (code-splitting, lazy-loading)
+- Minification
+- Compression
+- Removing unused code (tree-shaking)
+- Caching code to minimize network trips (HTTP caching, Service Workers
