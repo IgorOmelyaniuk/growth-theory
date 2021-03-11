@@ -138,3 +138,53 @@ PRPL is a pattern for structuring and serving web applications and Progressive W
 - Compression
 - Removing unused code (tree-shaking)
 - Caching code to minimize network trips (HTTP caching, Service Workers
+
+## First Contentful Paint (FCP):
+
+This metric measures the time from when the page starts loading to when any part of the page's content is rendered on the screen. It can be only a part of content.
+
+Tools: PageSpeed Insights, Lighthouse, Chrome DevTools.
+
+How to improve FCP:
+- Eliminate render-blocking resources
+- Remove unused and minify CSS
+- Preconnect to required origins
+- Reduce server response times (TTFB)
+- Avoid multiple page redirects
+- Preload key requests
+
+## Largest Contentful Paint (LCP):
+
+This metric reports the render time of the largest image or text block visible within the viewport.
+
+Tools: PageSpeed Insights, Chrome DevTools, Lighthouse, WebPageTest.
+
+How to improve LCP:
+- Apply instant loading with the PRPL pattern
+- Optimizing the Critical Rendering Path
+- Optimize your CSS, images, fonts and JS
+
+## First Input Delay (FID):
+
+FID measures the time from when a user first interacts with a page (i.e. when they click a link, tap on a button, or use a custom, JavaScript-powered control) to the time when the browser is actually able to begin processing event handlers in response to that interaction.
+
+How to improve FID:
+- Reduce the impact of third-party code
+- Reduce JavaScript execution time
+- Minimize main thread work
+- Keep request counts low and transfer sizes small
+
+## Time to Interactive (TTI):
+
+The TTI metric measures the time from when the page starts loading to when its main sub-resources have loaded and it is capable of reliably responding to user input quickly.
+
+How to improve TTI:
+- Minify JavaScript
+- Preconnect to required origins
+- Preload key requests
+- Reduce the impact of third-party code
+- Minimize critical request depth
+- Reduce JavaScript execution time
+- Keep request counts low and transfer sizes small
+
+
