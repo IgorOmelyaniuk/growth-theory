@@ -1,0 +1,37 @@
+## Open questions:
+- SPA vs MPA pros/cons;
+- SSR vs CSR pros/cons;
+- Micro-frontends, monorepos;
+- PWA (features list briefly);
+- CSS methodologies: BEM, OOCSS, SMACSS, Atomic CSS, CSS-in-JS, CSS modules;
+- Angular vs React vs etc how to choose next project framework?
+- Community, github stars, repos, forks, components;
+- Documentation;
+- Support, new versions;
+- Popularity trends (npm, google, stackoverflow);
+- Learning curve;
+- Features out of the box;
+- Scalable for big teams;
+- Versions backward compatibility;
+- Native/mobile apps support?
+- Bundle size;
+- Flexible/opinionated in project structure/configuration;
+- Ease of integration to existing apps (micro frontends-friendliness);
+- Production case studies;
+- Team background / level of knowledge;
+- SSR support.
+
+## Materials:
+- [FE frameworks comparison](https://kb.epam.com/display/EPMCJSCC/FE+Frameworks)
+- [e2e frameworks comparison](https://kb.epam.com/display/EPMCJSCC/E2E+Solutions)
+- [Mobile development approaches](https://kb.epam.com/display/EPMCJSCC/Mobile+Development+Approaches)
+- [MPA vs SPA](https://kb.epam.com/display/EPMCJSCC/MPA+vs+SPA)
+- [SSR vs CSR](https://kb.epam.com/display/EPMCJSCC/SSR+vs+CSR)
+- [State of CSS methodologies 2020](https://2020.stateofcss.com/en-US/technologies/methodologies/)
+- [CSS Methodologies overview](https://www.valoremreply.com/post/5_css_methodologies/)
+- [Micro Frontends](https://martinfowler.com/articles/micro-frontends.html)
+- [Important Considerations for Choosing A Web Dev Framework](https://code.tutsplus.com/tutorials/15-important-considerations-for-choosing-a-web-dev-framework--net-8035)
+- [PWA concept](https://web.dev/what-are-pwas/)
+- [PWA features](https://www.altexsoft.com/blog/engineering/progressive-web-apps/)
+- [CSS modules](https://css-tricks.com/css-modules-part-1-need/)
+- [Monorepo](https://www.toptal.com/front-end/guide-to-monorepos)
