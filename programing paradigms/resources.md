@@ -1,0 +1,38 @@
+## Open questions:
+- OOP principles, pros/cons:
+  - Encapsulation;
+  - Abstraction;
+  - Inheritance;
+  - Polymorphism;
+  - Dependency injection.
+- Functional programming pros/cons:
+  - Pure functions, side effects;
+  - Immutability;
+  - Functions as first-class entities;
+  - Functions composition;
+  - High order functions;
+  - Recursion;
+  - Currying/Partial Application/Memorization.
+- Functional Programming vs OOP paradigms, composition over inheritance.
+- Reactive programming (eg. RXJS) pros/cons:
+  - Streams, merging, writing declarative code, avoiding callback hell, threading and asynchronous mechanisms implementation, purity, etc.;  
+  - Disadvantages, only hard debugging, making documentation, memory consumption, time to start, managing concurrency, data immutability required, Complexity of testing, learning curve.
+
+## Materials:
+- [Guide to FP - https://github.com/MostlyAdequate/mostly-adequate-guide](https://github.com/MostlyAdequate/mostly-adequate-guide)
+- [Composing Software - https://medium.com/javascript-scene/composing-software-the-book-f31c77fc3ddc](https://medium.com/javascript-scene/composing-software-the-book-f31c77fc3ddc)
+- [OOP Principles](https://www.indeed.com/career-advice/career-development/what-is-object-oriented-programming)
+- DI:
+  - https://www.freecodecamp.org/news/a-quick-intro-to-dependency-injection-what-it-is-and-when-to-use-it-7578c84fa88f/
+  - https://martinfowler.com/articles/injection.html
+- FP in JS:
+  - https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0
+  - https://eloquentjavascript.net/05_higher_order.html
+  - https://stackoverflow.com/questions/5250733/what-are-the-advantages-and-disadvantages-of-recursion
+- RP in JS:
+  - https://habr.com/ru/post/427467/
+  - https://gist.github.com/staltz/868e7e9bc2a7b8c1f754
+- Interfaces vs Abstract Classes in Typescript:
+  - https://levelup.gitconnected.com/design-patterns-with-typescript-interfaces-vs-abstract-classes-b6aab6e2ad21
+  - http://dotnetpattern.com/typescript-abstract-class#:~:text=TypeScript%20Interface%20vs%20Abstract%20Class&text=All%20members%20are%20abstract.&text=Abstract%20class%20does%20not%20support,class%20compile%20to%20JavaScript%20functions
+- [Currying vs Partial Application](https://medium.com/better-programming/functional-programming-currying-vs-partial-application-53b8b05c73e3#:~:text=Currying%3A%20A%20function%20returning%20another,function%20can%20take%20several%20parameters)
