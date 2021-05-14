@@ -1,0 +1,33 @@
+## Open questions:
+- Tools and techniques for ensuring code quality;
+- Test pyramid (all types of tests);
+- Unit Testing vs Integration Testing vs E2E Testing;
+- Effective testing strategy for a simple project?
+- Which code should be covered with unit tests;
+- Code coverage;
+- Unit tests (what is good unit test? (FIRST principles) understandable and readable, independent and isolated, repeatable and fast,  should be well structured);
+- Integration Testing, Acceptance Testing, API testing, UI testing, e2e tests;
+- TDD explanation;
+- Code smells;
+- Code standards and lint rules;
+- Complexity measurement (please check cyclomatic code complexity);
+- Common tools and metrics for measure code quality;
+- Code review checklist that you follow?
+- Code review (What to review and When to review, Code Duplication and how to deal with it);
+- Convincing the Customer to write unit-tests;
+- Typescript advantages and disadvantages;
+- Process of handling Technical Debt, tools for managing technical debt (ex. Sonar).
+
+## Materials:
+- [Code Quality Ladder](https://medium.com/leap-ai/climbing-the-code-quality-ladder-babd3198e6e2)
+- [Code Quality](https://www.perforce.com/blog/sca/what-code-quality-and-how-improve-code-quality)
+- [Finding the Right Balance between Tests](https://codeahoy.com/2016/07/05/unit-integration-and-end-to-end-tests-finding-the-right-balance/)
+- [Testing is Good. Pyramids are Bad. Ice Cream Cones are the Worst](https://medium.com/@fistsOfReason/testing-is-good-pyramids-are-bad-ice-cream-cones-are-the-worst-ad94b9b2f05f)
+- [Snapshot Testing](https://www.sitepen.com/blog/snapshot-testing-benefits-and-drawbacks)
+- [F.I.R.S.T principles of testing](https://medium.com/@tasdikrahman/f-i-r-s-t-principles-of-testing-1a497acda8d6)
+- [TDD vs BDD](https://www.youtube.com/watch?v=4QFYTQy47yA)
+- [Arrange, Act and Assert](https://medium.com/@pjbgf/title-testing-code-ocd-and-the-aaa-pattern-df453975ab80)
+- [Given When Then](https://martinfowler.com/bliki/GivenWhenThen.html)
+- [Unlearning toxic behaviors in a code review culture](https://medium.com/@sandya.sankarram/unlearning-toxic-behaviors-in-a-code-review-culture-b7c295452a3c)
+- [Martin fowler technical debt](https://www.martinfowler.com/tags/technical%20debt.html)
+- [Technical Debt Quadrant](https://www.martinfowler.com/bliki/TechnicalDebtQuadrant.html)
