@@ -1,0 +1,39 @@
+## Open questions:
+- What is Software Architecture?
+  - Software elements (modules);
+  - Relations among them (connections and communication protocols);
+  - Properties of both elements and relations (quality attributes);
+  - Constraints
+- Steps to define Architecture?
+  - Identify Stakeholders (to communicate with);
+  - Understand the Problem, Functional Requirements (solve a valid business problem or have a recognizable return on investment (ROI));
+  - Identify Design Elements and their Relationships (boundaries and context of the system);
+  - Evaluate the Architecture Design (Non-Functional Requirements, quality attributes, constraints);
+  - Prioritize quality attributes (trade-off analysis, suffer ones for others);
+  - Transform the Architecture Design (quality attributes oriented - optimization of solutions using various patterns);
+  - Document the results (to facilitate communication between stakeholders).
+- Good Architecture principles?
+  - SOLID;
+  - Separation of concerns (SoC): separate your application into different sections, and each section will address a separate concern;
+  - System Service Components should be business focused. Security, communications, or system services like logging, profiling, and configuration should be abstracted in the separate components;
+  - Single Responsibility principle: Every module for a single functionality;
+  - Principle of Least Knowledge (Or Law of Demeter): An object should have limited knowledge about other objects;
+  - DRY;
+  - KISS;
+  - Minimize upfront design: Only design what is necessary. YAGNI ("You ain’t gonna need it"). think Return for Investment (ROI);
+  - Composition over Inheritance while Reusing the Functionality;
+  - Identify Components and Group them in Logical Layers;
+  - Define the Communication Protocol, Data Format between Layers;
+  - Design Exceptions and Exception Handling Mechanism;
+  - Naming Convention.
+
+## Materials:
+- [Non-functional Requirements: Examples, Types, How to Approach](https://www.altexsoft.com/blog/non-functional-requirements/)
+- [Functional vs Non-functional requirements](https://reqtest.com/requirements-blog/functional-vs-non-functional-requirements/#:~:text=Simply%20put%2C%20the%20difference%20is,what%20the%20system%20should%20do.&text=One%20could%20also%20think%20of,attributes%20for%20of%20a%20system)
+- Separation of concerns:
+  - [Separation of Concerns in Software Design](https://nalexn.github.io/separation-of-concerns/)
+  - [Separation of Concerns - Engineering Insights](https://medium.com/machine-words/separation-of-concerns-1d735b703a60)
+- [Principle of least knowledge](https://sergeyzhuk.me/2016/12/11/law-of-demeter/)
+- [DRY, KISS, YAGNI](https://henriquesd.medium.com/dry-kiss-yagni-principles-1ce09d9c601f)
+- [Single responsibility principle: A Recipe for Great Code](https://www.toptal.com/software/single-responsibility-principle)
+- [Software Architecture Guide](https://martinfowler.com/architecture/)
